@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.argTable{
+    background-color: #332;
+    display: block;
+}
+
+
+.tableNumber{
+    color: #ffffff;
+}
+
+
+.tableTitle{
+    color: #ffffff;
+}
+
+
+.tablePoster{
+    color: #ffffff;
+}
+
+
+.tableDate{
+    color: #ffffff;
+}
