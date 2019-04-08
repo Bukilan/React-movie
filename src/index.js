@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import {createStore} from "redux";
 
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
-import reducer from "./reducer";
-import store from "./store"
+import configureStore from "./ConfigureStore"
+
+const store = configureStore();
+console.log(store.getState());
 
 
 ReactDOM.render(
@@ -18,7 +19,7 @@ ReactDOM.render(
 );
 registerServiceWorker();
 
-document.getElementById('statenumber').onclick = function(){
-    console.log('1111')
-};
+// document.getElementById('statenumber').onclick = function(){
+//     console.log('1111')
+// };
 
