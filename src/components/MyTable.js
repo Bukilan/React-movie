@@ -1,5 +1,5 @@
 import React from 'react';
-import "./MyTable.css"
+import "../MyTable.css"
 
 
 class MyTable extends React.Component{

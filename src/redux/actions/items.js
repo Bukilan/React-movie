@@ -6,7 +6,7 @@ import React from "react";
 export function itemsFetchDataSuccess(movies) {
     return {
         type: 'ITEMS_FETCH_DATA_SUCCESS',
-        movies
+        list: movies
     };
 }
 

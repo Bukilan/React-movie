@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import MyTable from "./MyTable"
-import { itemFetchMovies } from './actions/items';
+import MyTable from "./components/MyTable"
+import { itemFetchMovies } from './redux/actions/items';
 
 import "./App.css"
 
-import SimpleTable from "./SimpleTable"
-import ReactSimpleTable from "./ReactSimpleTable"
-import MovieRow from "./MovieRow"
-import reducer from "./reducer/items"
+import SimpleTable from "./components/SimpleTable"
+import ReactSimpleTable from "./components/ReactSimpleTable"
+import MovieRow from "./components/MovieRow"
+import reducer from "./redux/reducer/items"
 
 
 
@@ -110,7 +110,7 @@ App.propTypes = {
 
 function mapStateToProps(state){
     return {
-        items: state.items
+        list: state.list
     }
 }
 
