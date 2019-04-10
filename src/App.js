@@ -32,7 +32,7 @@ class App extends React.Component {
                     <tbody>
                     <tr id="lineid">
                         <td className="statenumber" id="statenumber">
-                            {this.props.list.map(function (item) {
+                            {this.props.state.items.list.map(function (item) {
                                 return(
                                     <div>
                                         {item.number}
@@ -41,7 +41,7 @@ class App extends React.Component {
                             </td>
 
                             <td className="statetitle" id="statetitle">
-                                {this.props.list.map(function (item) {
+                                {this.props.state.items.list.map(function (item) {
                                     return(
                                         <div>
                                             {item.title}
@@ -49,17 +49,17 @@ class App extends React.Component {
                                 )})}
                             </td>
 
-                            <td>
-                                {this.props.list.map(function (item) {
-                                    return(
-                                        <div>
-                                            {item.poster}
-                                        </div>
-                                )})}
-                            </td>
+                            {/*<td>*/}
+                                {/*{this.props.state.items.list.map(function (item) {*/}
+                                    {/*return(*/}
+                                        {/*<div>*/}
+                                            {/*{item.poster}*/}
+                                        {/*</div>*/}
+                                {/*)})}*/}
+                            {/*</td>*/}
 
                             <td className="stateyear" id="stateyear">
-                                {this.props.list.map(function (item) {
+                                {this.props.state.items.list.map(function (item) {
                                     return(
                                         <div>
                                             {item.year}
@@ -103,12 +103,6 @@ const mapDispatchToProps = (dispatch) => {
         fetchMovie: () => dispatch(itemFetchMovies())
     };
 };
-
-// const mapDispatchToProps = (dispatch) => ({
-//     fetchMovie: bindActionCreators( {itemFetchMovies}, dispatch)
-// });
-
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

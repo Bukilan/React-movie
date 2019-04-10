@@ -6,12 +6,10 @@ const initalState = {
 
 
 export function items(state = initalState, action) {
-    let newState = { ...state }
-
     switch (action.type) {
         case 'ITEMS_FETCH_DATA_SUCCESS':
             return {
-                newState,
+                ...state,
                 list: action.payload,
                 counter: state.counter++,
                 str: "ya tut"
@@ -19,6 +17,6 @@ export function items(state = initalState, action) {
             };
 
         default:
-            return newState ;
+            return state ;
     }
 }
