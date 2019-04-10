@@ -1,16 +1,24 @@
 const initalState = {
-    list: []
+    list: [],
+    counter: 0,
+    str: "init state"
 };
 
 
 export function items(state = initalState, action) {
-    const newState = { ...state};
+    let newState = { ...state }
 
     switch (action.type) {
         case 'ITEMS_FETCH_DATA_SUCCESS':
-            return action.list;
+            return {
+                newState,
+                list: action.payload,
+                counter: state.counter++,
+                str: "ya tut"
+
+            };
 
         default:
-            return newState;
+            return newState ;
     }
 }

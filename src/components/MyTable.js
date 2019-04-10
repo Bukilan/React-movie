@@ -2,9 +2,9 @@ import React from 'react';
 import "../MyTable.css"
 
 
-class MyTable extends React.Component{
+const MyTable = (props) =>
 
-    render() {
+{
         return(
           <table className="argTable">
               <tbody>
@@ -28,7 +28,6 @@ class MyTable extends React.Component{
               </tbody>
           </table>
         );
-    }
-}
+};
 
 export default MyTable;

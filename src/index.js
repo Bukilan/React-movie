@@ -3,12 +3,15 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
 import App from "./App";
-import registerServiceWorker from "./components/registerServiceWorker";
+import registerServiceWorker from "./registerServiceWorker";
 
-import store from "./ConfigureStore";
+import {applyMiddleware, createStore} from "redux";
+import rootReducer  from "./redux/reducer/index";
+import thunk from "redux-thunk";
+import logger from "redux-logger"
 
-console.log(store.getState());
 
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
     <Provider store={store}>
@@ -17,8 +20,4 @@ ReactDOM.render(
     document.getElementById("root")
 );
 registerServiceWorker();
-
-// document.getElementById('statenumber').onclick = function(){
-//     console.log('1111')
-// };
 
