@@ -1,3 +1,28 @@
+.arrows{
+  display: inline-block;
+  margin-left: 79%;
+  margin-top: 60px;
+}
+
+.arrow {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-top: 2px solid #000;
+  border-right: 2px solid #000;
+}
+
+.arrow-right {
+  transform: rotate(45deg);
+  margin-bottom: -30px;
+  margin-left: 25px;
+}
+
+.arrow-left {
+  transform: rotate(-135deg);
+  margin-bottom: -30px;
+}
+
 td {
   padding: 35px 0 0 0;
   text-align: left;
@@ -5,7 +30,7 @@ td {
 }
 
 .data_table{
-  margin: 6% 15%;
+  margin: 4% 15%;
   border-top: 1px solid black;
   padding: 40px 10px;
 }

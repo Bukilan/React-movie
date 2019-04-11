@@ -12,28 +12,33 @@ class App extends React.Component {
 
     componentDidMount() {
         this.props.fetchMovie();
-
-
     }
 
 
+    handleClickPlus = () => {
+        this.props.fetchMovie(this.props.state.items.counter_plus);
+    };
+
+    handleClickMin = () => {
+        this.props.fetchMovie(this.props.state.items.counter_min);
+    };
 
     render() {
-        // if (this.props.list.length === 0) return (<div>loading</div>);
 
         return (
             <div>
                 <MyTable/>
+
+                <div className="arrows">
+                    <span onClick={this.handleClickMin} className="arrow arrow-left"/>
+                    <span onClick={this.handleClickPlus} className="arrow arrow-right"/>
+                </div>
+
                 <table className="data_table">
                     <tbody>
                             {this.props.state.items.list.map(function (item) {
                                 return(
                                     <tr className="rt-table">
-                                        {/*<td className="row_number">*/}
-                                        {/*    <h3 className="elem_number">*/}
-                                        {/*        {item.number}*/}
-                                        {/*    </h3>*/}
-                                        {/*</td>*/}
 
                                         <td className="row_poster">
                                                 {item.poster}
@@ -56,11 +61,7 @@ class App extends React.Component {
                                                 {item.description}
                                             </p>
                                         </td>
-
-                                        <hr/>
-
                                     </tr>
-
                                 )})}
                     </tbody>
                 </table>
@@ -85,13 +86,15 @@ App.defaultProps = {
 
 const mapStateToProps = (state) => ({
         list: state.list,
+        counter_plus: state.counter_plus,
+        counter_min: state.counter_min,
         state: state
 });
 
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchMovie: () => dispatch(itemFetchMovies())
+        fetchMovie: (page, method, query_value) => dispatch(itemFetchMovies(page, method, query_value))
     };
 };
 

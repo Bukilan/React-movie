@@ -1,9 +1,9 @@
 
 import React from "react";
 
-export function itemFetchMovies() {
+export function itemFetchMovies(page = 1, method = 'movie/popular', query_value='') {
     return function (dispatch) {
-         return fetch('https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=56d793d6cea47e6ab2101f3386c7b8b6', {method: 'GET'})
+         return fetch('https://api.themoviedb.org/3/' + method + '?api_key=56d793d6cea47e6ab2101f3386c7b8b6&language=en-US' + query_value + '&page=' + page.toString(), {method: 'GET'})
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -38,7 +38,7 @@ export function itemFetchMovies() {
                 dispatch(
                     {
                         type: 'ITEMS_FETCH_DATA_SUCCESS',
-                        payload: movies
+                        payload: movies,
                     }
                 );
             });

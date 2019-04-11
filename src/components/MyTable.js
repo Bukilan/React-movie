@@ -2,6 +2,10 @@ import React from 'react';
 import "../MyTable.css"
 
 
+function myFunction(val) {
+    console.log(val)
+}
+
 const MyTable = (props) =>
 
 {
@@ -10,7 +14,7 @@ const MyTable = (props) =>
                 <h1 className="header-name">
                     Movie list
                 </h1>
-                <input className="header-input"/>
+                <input className="header-input" type="text" name="txt"/>
             </div>
         )
 };
