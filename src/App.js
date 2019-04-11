@@ -24,18 +24,16 @@ class App extends React.Component {
         return (
             <div>
                 <MyTable/>
-                <table>
+                <table className="data_table">
                     <tbody>
-
-
                             {this.props.state.items.list.map(function (item) {
                                 return(
-                                    <tr id="lineid">
-                                        <td className="row_number">
-                                            <h3 className="elem_number">
-                                                {item.number}
-                                            </h3>
-                                        </td>
+                                    <tr className="rt-table">
+                                        {/*<td className="row_number">*/}
+                                        {/*    <h3 className="elem_number">*/}
+                                        {/*        {item.number}*/}
+                                        {/*    </h3>*/}
+                                        {/*</td>*/}
 
                                         <td className="row_poster">
                                                 {item.poster}
@@ -58,10 +56,12 @@ class App extends React.Component {
                                                 {item.description}
                                             </p>
                                         </td>
+
+                                        <hr/>
+
                                     </tr>
+
                                 )})}
-
-
                     </tbody>
                 </table>
             </div>

@@ -29,7 +29,7 @@ export function itemFetchMovies() {
                             // style={{width: 150}}
                         />,
                         title: data.results[i].original_title,
-                        year: data.results[i].release_date,
+                        year: new Date(Date.parse(data.results[i].release_date)).toDateString(),
                         description: data.results[i].overview
                     })
                 }
