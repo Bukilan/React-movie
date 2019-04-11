@@ -3,7 +3,6 @@ import { PropTypes, defaultProps }  from 'prop-types';
 import { connect } from "react-redux";
 import MyTable from "./components/MyTable"
 import { itemFetchMovies } from './redux/actions/items';
-import { bindActionCreators } from 'redux';
 
 import "./App.css"
 
@@ -22,52 +21,47 @@ class App extends React.Component {
     render() {
         // if (this.props.list.length === 0) return (<div>loading</div>);
 
-        console.log('check props after componentDidMount');
-        console.log(this.props.state);
-
         return (
             <div>
                 <MyTable/>
                 <table>
                     <tbody>
-                    <tr id="lineid">
-                        <td className="statenumber" id="statenumber">
+
+
                             {this.props.state.items.list.map(function (item) {
                                 return(
-                                    <div>
-                                        {item.number}
-                                    </div>
+                                    <tr id="lineid">
+                                        <td className="row_number">
+                                            <h3 className="elem_number">
+                                                {item.number}
+                                            </h3>
+                                        </td>
+
+                                        <td className="row_poster">
+                                                {item.poster}
+                                        </td>
+
+                                        <td className="row_title">
+                                            <h2 className="elem_title">
+                                                {item.title}
+                                            </h2>
+                                        </td>
+
+                                        <td className="row_year">
+                                            <h3 className="elem_year">
+                                                {item.year}
+                                            </h3>
+                                        </td>
+
+                                        <td className="row_description">
+                                            <p className="elem_description">
+                                                {item.description}
+                                            </p>
+                                        </td>
+                                    </tr>
                                 )})}
-                            </td>
 
-                            <td className="statetitle" id="statetitle">
-                                {this.props.state.items.list.map(function (item) {
-                                    return(
-                                        <div>
-                                            {item.title}
-                                        </div>
-                                )})}
-                            </td>
 
-                            {/*<td>*/}
-                                {/*{this.props.state.items.list.map(function (item) {*/}
-                                    {/*return(*/}
-                                        {/*<div>*/}
-                                            {/*{item.poster}*/}
-                                        {/*</div>*/}
-                                {/*)})}*/}
-                            {/*</td>*/}
-
-                            <td className="stateyear" id="stateyear">
-                                {this.props.state.items.list.map(function (item) {
-                                    return(
-                                        <div>
-                                            {item.year}
-                                        </div>
-                                )})}
-                            </td>
-
-                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -81,8 +75,7 @@ class App extends React.Component {
 
 App.propTypes = {
     fetchMovie: PropTypes.func.isRequired,
-    list: PropTypes.array,
-    date: PropTypes.object
+    list: PropTypes.array.isRequired,
 };
 
 App.defaultProps = {
@@ -92,8 +85,6 @@ App.defaultProps = {
 
 const mapStateToProps = (state) => ({
         list: state.list,
-        counter: state.counter,
-        str: state.str,
         state: state
 });
 

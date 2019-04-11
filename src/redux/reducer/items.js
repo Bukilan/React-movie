@@ -1,7 +1,5 @@
 const initalState = {
     list: [],
-    counter: 0,
-    str: "init state"
 };
 
 
@@ -11,8 +9,6 @@ export function items(state = initalState, action) {
             return {
                 ...state,
                 list: action.payload,
-                counter: state.counter++,
-                str: "ya tut"
 
             };
 
