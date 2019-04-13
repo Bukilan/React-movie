@@ -1,11 +1,12 @@
 import React from "react";
-import { PropTypes, defaultProps }  from 'prop-types';
+import { PropTypes }  from 'prop-types';
 import { connect } from "react-redux";
 import MyTable from "./components/MyTable"
 import { itemFetchMovies } from './redux/actions/items';
 
 import "./App.css"
 
+let  page_counter = 1;
 
 class App extends React.Component {
 
@@ -16,11 +17,13 @@ class App extends React.Component {
 
 
     handleClickPlus = () => {
-        this.props.fetchMovie(this.props.state.items.counter_plus);
+        page_counter++;
+        this.props.fetchMovie(page_counter);
     };
 
     handleClickMin = () => {
-        this.props.fetchMovie(this.props.state.items.counter_min);
+        if(page_counter >= 2) {page_counter--}
+        this.props.fetchMovie(page_counter);
     };
 
     render() {
@@ -86,8 +89,6 @@ App.defaultProps = {
 
 const mapStateToProps = (state) => ({
         list: state.list,
-        counter_plus: state.counter_plus,
-        counter_min: state.counter_min,
         state: state
 });
 

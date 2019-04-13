@@ -1,11 +1,6 @@
 import React from 'react';
 import "../MyTable.css"
 
-
-function myFunction(val) {
-    console.log(val)
-}
-
 const MyTable = (props) =>
 
 {
