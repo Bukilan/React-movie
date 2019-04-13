@@ -23,6 +23,14 @@
   margin-bottom: -30px;
 }
 
+.arrow-right:hover{
+  padding: 1px 0 0 2px;
+}
+
+.arrow-left:hover{
+  padding: 2px 1px 0 0;
+}
+
 td {
   padding: 35px 0 0 0;
   text-align: left;
