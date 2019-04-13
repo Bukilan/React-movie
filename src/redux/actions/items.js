@@ -11,7 +11,7 @@ export function itemFetchMovies(page = 1, method = 'movie/popular', query_value=
 
                 let currentCount = 1;
                 function makeCounter() {
-                    return function() {
+                     return function() {
                         return currentCount++;
                     };
                 }

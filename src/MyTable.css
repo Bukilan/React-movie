@@ -11,7 +11,7 @@
 }
 
 .header-input{
-    margin-left: 78%;
+    margin-top: 10px;
     right: 1px;
     font-size: 24px;
     display: inline-block;
@@ -24,6 +24,14 @@
 
 .header-name {
     padding-left: 20px;
+    margin-top: -20px;
+    display: inline-block;
+    color: #fff;
+    font-family: Roboto, sans-serif;
+}
+
+.header-home{
+    padding-left: 60px;
     display: inline-block;
     color: #fff;
     font-family: Roboto, sans-serif;

@@ -71,21 +71,12 @@ class App extends React.Component {
             </div>
         );
     }
-
-
-
 }
-
 
 App.propTypes = {
     fetchMovie: PropTypes.func.isRequired,
     list: PropTypes.array.isRequired,
 };
-
-App.defaultProps = {
-    list: [],
-};
-
 
 const mapStateToProps = (state) => ({
         list: state.list,
