@@ -2,6 +2,7 @@ import React from 'react';
 import "../MyTable.css"
 import {itemFetchMovies} from "../redux/actions/items";
 import {connect} from "react-redux";
+import {PropTypes} from "prop-types";
 
 class MyTable extends React.Component{
 
@@ -9,6 +10,8 @@ class MyTable extends React.Component{
         if (value !== '') {
             let query = '&query=' + value.toString();
             this.props.fetchMovie(1, 'search/movie', query);
+        } else {
+            this.props.fetchMovie(1);
         }
     }
 
@@ -21,7 +24,7 @@ class MyTable extends React.Component{
 
     handleMenu(){
         console.log('213');
-        this.props.fetchMovie();
+        window.location.reload();
     }
 
 
@@ -49,9 +52,13 @@ class MyTable extends React.Component{
     }
 }
 
+MyTable.propTypes = {
+    // fetchMovie: PropTypes.func.isRequired,
+    list: PropTypes.array.isRequired,
+};
 
 const mapStateToProps = (state) => ({
-    list: state.list,
+    // list: state.list,
     state: state
 });
 

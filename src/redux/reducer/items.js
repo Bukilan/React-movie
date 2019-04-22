@@ -1,5 +1,8 @@
 const initalState = {
     list: [],
+    method: "movie/popular",
+    query: '',
+
 };
 
 
@@ -9,6 +12,8 @@ export function items(state = initalState, action) {
             return {
                 ...state,
                 list: action.payload,
+                method: action.payload_method,
+                query: action.payload_query,
             };
 
         default:

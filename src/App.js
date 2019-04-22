@@ -31,7 +31,6 @@ class App extends React.Component {
         return (
             <div>
                 <MyTable/>
-
                 <div className="arrows">
                     <span onClick={this.handleClickMin} className="arrow arrow-left"/>
                     <span onClick={this.handleClickPlus} className="arrow arrow-right"/>
@@ -75,12 +74,15 @@ class App extends React.Component {
 
 App.propTypes = {
     fetchMovie: PropTypes.func.isRequired,
-    list: PropTypes.array.isRequired,
+    // list: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-        list: state.list,
-        state: state
+        // list: state.list,
+        method: state.method,
+        query: state.query,
+        state: state,
+
 });
 
 
