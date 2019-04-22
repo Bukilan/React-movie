@@ -31,7 +31,8 @@
 }
 
 .header-home{
-    padding-left: 60px;
+    font-size: 20px;
+    padding-left: 30px;
     display: inline-block;
     color: #fff;
     font-family: Roboto, sans-serif;

@@ -6,7 +6,9 @@ import { itemFetchMovies } from './redux/actions/items';
 
 import "./App.css"
 
-let  page_counter = 1;
+let  trend_page_counter = 1;
+let  search_page_counter = 1;
+let  prev_query = "";
 
 class App extends React.Component {
 
@@ -17,13 +19,44 @@ class App extends React.Component {
 
 
     handleClickPlus = () => {
-        page_counter++;
-        this.props.fetchMovie(page_counter);
+        switch (this.props.state.items.method) {
+            case "movie/popular": {
+                trend_page_counter++;
+                this.props.fetchMovie(trend_page_counter);
+                break
+            }
+            case "search/movie": {
+                if (prev_query !== this.props.state.items.query.toString()) {
+                    search_page_counter = 1
+                }
+                search_page_counter++;
+                let query = '&query=' + this.props.state.items.query.toString();
+                this.props.fetchMovie(search_page_counter, 'search/movie', query);
+                prev_query = this.props.state.items.query.toString();
+                break
+
+            }
+        }
     };
 
     handleClickMin = () => {
-        if(page_counter >= 2) {page_counter--}
-        this.props.fetchMovie(page_counter);
+        switch (this.props.state.items.method) {
+            case "movie/popular": {
+                if (trend_page_counter >= 2) {
+                    trend_page_counter--
+                }
+                this.props.fetchMovie(trend_page_counter);
+                break
+            }
+            case "search/movie": {
+                if(search_page_counter >= 2) {search_page_counter--}
+                this.props.fetchMovie(search_page_counter);
+                let query = '&query=' + this.props.state.items.query.toString();
+                this.props.fetchMovie(search_page_counter, 'search/movie', query);
+                prev_query = this.props.state.items.query.toString();
+                break
+            }
+        }
     };
 
     render() {
@@ -38,33 +71,34 @@ class App extends React.Component {
 
                 <table className="data_table">
                     <tbody>
-                            {this.props.state.items.list.map(function (item) {
-                                return(
-                                    <tr className="rt-table">
+                    {this.props.state.items.list.map(function (item) {
+                        return (
+                            <tr className="rt-table">
 
-                                        <td className="row_poster">
-                                                {item.poster}
-                                        </td>
+                                <td className="row_poster">
+                                    {item.poster}
+                                </td>
 
-                                        <td className="row_title">
-                                            <h2 className="elem_title">
-                                                {item.title}
-                                            </h2>
-                                        </td>
+                                <td className="row_title">
+                                    <h2 className="elem_title">
+                                        {item.title}
+                                    </h2>
+                                </td>
 
-                                        <td className="row_year">
-                                            <h3 className="elem_year">
-                                                {item.year}
-                                            </h3>
-                                        </td>
+                                <td className="row_year">
+                                    <h3 className="elem_year">
+                                        {item.year}
+                                    </h3>
+                                </td>
 
-                                        <td className="row_description">
-                                            <p className="elem_description">
-                                                {item.description}
-                                            </p>
-                                        </td>
-                                    </tr>
-                                )})}
+                                <td className="row_description">
+                                    <p className="elem_description">
+                                        {item.description}
+                                    </p>
+                                </td>
+                            </tr>
+                        )
+                    })}
                     </tbody>
                 </table>
             </div>
