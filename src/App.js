@@ -2,9 +2,11 @@ import React from "react";
 import { PropTypes }  from 'prop-types';
 import { connect } from "react-redux";
 import MyTable from "./components/MyTable"
+import IsError from "./components/isError"
+import CancelCross from "./components/CancelCross"
 import { itemFetchMovies } from './redux/actions/items';
 
-import "./App.css"
+import "./static/App.css"
 
 let  trend_page_counter = 1;
 let  search_page_counter = 1;
@@ -60,6 +62,18 @@ class App extends React.Component {
     };
 
     render() {
+
+        console.log(this.props.state.items.list);
+
+
+        if (this.props.state.items.list.length === 0) {
+            return (
+                <div>
+                    <CancelCross/>
+                    <IsError/>
+                </div>
+            )
+        }
 
         return (
             <div>

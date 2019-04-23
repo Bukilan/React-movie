@@ -1,5 +1,5 @@
 import React from 'react';
-import "../MyTable.css"
+import "../static/MyTable.css"
 import {itemFetchMovies} from "../redux/actions/items";
 import {connect} from "react-redux";
 import {PropTypes} from "prop-types";
@@ -23,7 +23,6 @@ class MyTable extends React.Component{
     };
 
     handleMenu(){
-        console.log('213');
         window.location.reload();
     }
 
