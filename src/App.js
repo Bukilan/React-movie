@@ -2,7 +2,7 @@ import React from "react";
 import { PropTypes }  from 'prop-types';
 import { connect } from "react-redux";
 import MyTable from "./components/MyTable"
-import IsError from "./components/isError"
+import IsLoading from "./components/isLoading"
 import CancelCross from "./components/CancelCross"
 import { itemFetchMovies } from './redux/actions/items';
 
@@ -68,7 +68,7 @@ class App extends React.Component {
             return (
                 <div>
                     <CancelCross/>
-                    <IsError/>
+                    <IsLoading/>
                 </div>
             )
         }
