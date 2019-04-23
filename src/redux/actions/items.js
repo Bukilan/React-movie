@@ -37,14 +37,14 @@ export function itemFetchMovies(page = 1, method = 'movie/popular', query_value=
                 console.log(movies);
                 let curr_method = method;
                 let curr_query = query_value.split('=')[1];
-                dispatch(
-                    {
-                        type: 'ITEMS_FETCH_DATA_SUCCESS',
-                        payload: movies,
-                        payload_method: curr_method,
-                        payload_query: curr_query,
-                    }
-                );
+                    dispatch(
+                        {
+                            type: 'ITEMS_FETCH_DATA_SUCCESS',
+                            payload: movies,
+                            payload_method: curr_method,
+                            payload_query: curr_query,
+                        }
+                    );
             });
     }
 }

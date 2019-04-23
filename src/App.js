@@ -16,8 +16,9 @@ class App extends React.Component {
 
 
     componentDidMount() {
-        this.props.fetchMovie();
+        this.props.fetchMovie()
     }
+
 
 
     handleClickPlus = () => {
@@ -63,9 +64,6 @@ class App extends React.Component {
 
     render() {
 
-        console.log(this.props.state.items.list);
-
-
         if (this.props.state.items.list.length === 0) {
             return (
                 <div>
@@ -74,6 +72,7 @@ class App extends React.Component {
                 </div>
             )
         }
+
 
         return (
             <div>
