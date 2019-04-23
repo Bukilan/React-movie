@@ -7,6 +7,7 @@
     "@material-ui/icons": "^3.0.2",
     "babel": "^6.23.0",
     "classnames": "^2.2.6",
+    "gh-pages": "^2.0.1",
     "material-ui": "^0.20.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
@@ -25,7 +26,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +38,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "homepage": "https://bukilan.github.io/TestBuildMovieList/"
 }
