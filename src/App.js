@@ -10,6 +10,9 @@ import "./static/App.css"
 
 let  trend_page_counter = 1;
 let  search_page_counter = 1;
+let  top_rated_page_counter = 1;
+let  upcoming_page_counter = 1;
+let now_playing_page_counter = 1;
 let  prev_query = "";
 
 class App extends React.Component {
@@ -37,7 +40,21 @@ class App extends React.Component {
                 this.props.fetchMovie(search_page_counter, 'search/movie', query);
                 prev_query = this.props.state.items.query.toString();
                 break
-
+            }
+            case "movie/top_rated": {
+                top_rated_page_counter++;
+                this.props.fetchMovie(top_rated_page_counter, "movie/top_rated");
+                break
+            }
+            case "movie/upcoming": {
+                upcoming_page_counter++;
+                this.props.fetchMovie(upcoming_page_counter, "movie/upcoming");
+                break
+            }
+            case "movie/now_playing": {
+                now_playing_page_counter++;
+                this.props.fetchMovie(now_playing_page_counter, "movie/now_playing");
+                break
             }
         }
     };
@@ -57,6 +74,27 @@ class App extends React.Component {
                 let query = '&query=' + this.props.state.items.query.toString();
                 this.props.fetchMovie(search_page_counter, 'search/movie', query);
                 prev_query = this.props.state.items.query.toString();
+                break
+            }
+            case "movie/top_rated": {
+                if (top_rated_page_counter >= 2) {
+                    top_rated_page_counter--
+                }
+                this.props.fetchMovie(top_rated_page_counter, "movie/top_rated");
+                break
+            }
+            case "movie/upcoming": {
+                if (upcoming_page_counter >= 2) {
+                    upcoming_page_counter--
+                }
+                this.props.fetchMovie(upcoming_page_counter, "movie/upcoming");
+                break
+            }
+            case "movie/now_playing": {
+                if (now_playing_page_counter >= 2) {
+                    now_playing_page_counter--
+                }
+                this.props.fetchMovie(now_playing_page_counter, "movie/now_playing");
                 break
             }
         }
@@ -121,7 +159,6 @@ class App extends React.Component {
 
 App.propTypes = {
     fetchMovie: PropTypes.func.isRequired,
-    // list: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({

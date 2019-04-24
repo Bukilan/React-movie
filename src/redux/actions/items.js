@@ -3,6 +3,7 @@ import React from "react";
 
 export function itemFetchMovies(page = 1, method = 'movie/popular', query_value='') {
     return function (dispatch) {
+        console.log('https://api.themoviedb.org/3/' + method + '?api_key=56d793d6cea47e6ab2101f3386c7b8b6&language=en-US' + query_value + '&page=' + page.toString());
          return fetch('https://api.themoviedb.org/3/' + method + '?api_key=56d793d6cea47e6ab2101f3386c7b8b6&language=en-US' + query_value + '&page=' + page.toString(), {method: 'GET'})
             .then(response => response.json())
             .then(data => {
@@ -26,7 +27,6 @@ export function itemFetchMovies(page = 1, method = 'movie/popular', query_value=
                             className="elem_poster"
                             src={image_url}
                             alt="new"
-                            // style={{width: 150}}
                         />,
                         title: data.results[i].original_title,
                         year: new Date(Date.parse(data.results[i].release_date)).toDateString(),

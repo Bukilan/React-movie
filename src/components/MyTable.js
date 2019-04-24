@@ -2,7 +2,6 @@ import React from 'react';
 import "../static/MyTable.css"
 import {itemFetchMovies} from "../redux/actions/items";
 import {connect} from "react-redux";
-import {PropTypes} from "prop-types";
 
 let sel;
 
@@ -41,12 +40,12 @@ let sel;
                 props.fetchMovie(1, "movie/upcoming");
                 break
             }
-            case "latest": {
-                props.fetchMovie(1, "movie/latest");
+            case "now_playing": {
+                props.fetchMovie(1, "movie/now_playing");
                 break
             }
         }
-    }
+    };
 
 
         return (
@@ -70,7 +69,7 @@ let sel;
                         <option value="popular">Popular</option>
                         <option value="top_rated">Top Rated</option>
                         <option value="upcoming">Upcoming</option>
-                        <option value="latest">Latest</option>
+                        <option value="now_playing">Now Playing</option>
                     </select>
                 </th>
                 <th width="1210"/>
@@ -81,7 +80,7 @@ let sel;
 
             </tr>
         )
-    }
+    };
 
 
 const mapStateToProps = (state) => ({
