@@ -1,9 +1,11 @@
+//TODO: HOME and cancel buttons doest make form back to "popular" value
+
 import React from 'react';
 import "../static/MyTable.css"
 import {itemFetchMovies} from "../redux/actions/items";
 import {connect} from "react-redux";
 
-let sel;
+let sel = "popular";
 
  const MyTable = (props) => {
 
@@ -61,18 +63,18 @@ let sel;
                         HOME
                     </h3>
                 </th>
-                <th width="40"/>
+                <th width="60"/>
                 <th>
-                    <select ref={node => {
-                        sel = node
-                    }} onChange={onSelectChange}>
+                    <select ref={node => {sel = node}}
+                            onChange={onSelectChange}
+                            className="select-form" >
                         <option value="popular">Popular</option>
                         <option value="top_rated">Top Rated</option>
                         <option value="upcoming">Upcoming</option>
                         <option value="now_playing">Now Playing</option>
                     </select>
                 </th>
-                <th width="1210"/>
+                <th width="1150"/>
                 <th>
                     <input className="header-input" type="text" name="txt" placeholder="Enter search term"
                            onChange={searchChangeHandler}/>
