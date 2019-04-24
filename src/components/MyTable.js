@@ -4,61 +4,90 @@ import {itemFetchMovies} from "../redux/actions/items";
 import {connect} from "react-redux";
 import {PropTypes} from "prop-types";
 
-class MyTable extends React.Component{
+let sel;
 
-    performSearch(value) {
+ const MyTable = (props) => {
+
+    const performSearch = (value) => {
         if (value !== '') {
             let query = '&query=' + value.toString();
-            this.props.fetchMovie(1, 'search/movie', query);
+            props.fetchMovie(1, 'search/movie', query);
         } else {
-            this.props.fetchMovie(1);
+            props.fetchMovie(1);
+        }
+    };
+
+    const searchChangeHandler = (event) => {
+        const searchTerm = event.target.value;
+        performSearch(searchTerm)
+    };
+
+    const handleMenu = () => {
+        props.fetchMovie(1);
+    };
+
+    const onSelectChange = () => {
+        console.log(sel.value);
+        switch (sel.value){
+            case "popular": {
+                props.fetchMovie(1);
+                break
+            }
+            case "top_rated": {
+                props.fetchMovie(1, "movie/top_rated");
+                break
+            }
+            case "upcoming": {
+                props.fetchMovie(1, "movie/upcoming");
+                break
+            }
+            case "latest": {
+                props.fetchMovie(1, "movie/latest");
+                break
+            }
         }
     }
 
-    searchChangeHandler(event){
-        const boundObject = this;
-        const searchTerm = event.target.value;
-        boundObject.performSearch(searchTerm)
-    };
 
-    handleMenu(){
-        this.props.fetchMovie(1);
-    }
-
-
-    render() {
-        return(
+        return (
             <tr className="header">
-                <th >
+                <th>
                     <h1 className="header-name">
                         Movie list
                     </h1>
                 </th>
                 <th width="40"/>
                 <th>
-                    <h3 className="header-home" onClick={this.handleMenu.bind(this)}>
+                    <h3 className="header-home" onClick={handleMenu}>
                         HOME
                     </h3>
                 </th>
-                <th width="1320"/>
+                <th width="40"/>
                 <th>
-                    <input  className="header-input" type="text" name="txt" placeholder="Enter search term" onChange={this.searchChangeHandler.bind(this)}/>
+                    <select ref={node => {
+                        sel = node
+                    }} onChange={onSelectChange}>
+                        <option value="popular">Popular</option>
+                        <option value="top_rated">Top Rated</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="latest">Latest</option>
+                    </select>
+                </th>
+                <th width="1210"/>
+                <th>
+                    <input className="header-input" type="text" name="txt" placeholder="Enter search term"
+                           onChange={searchChangeHandler}/>
                 </th>
 
             </tr>
         )
     }
-}
 
-MyTable.propTypes = {
-    list: PropTypes.array.isRequired,
-};
 
 const mapStateToProps = (state) => ({
     method: state.method,
     query: state.query,
     state: state,
-
 });
 
 const mapDispatchToProps = (dispatch) => {

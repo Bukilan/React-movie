@@ -2,7 +2,6 @@ const initalState = {
     list: [],
     method: "movie/popular",
     query: '',
-
 };
 
 

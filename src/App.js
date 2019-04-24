@@ -129,7 +129,6 @@ const mapStateToProps = (state) => ({
         method: state.method,
         query: state.query,
         state: state,
-
 });
 
 
