@@ -18,7 +18,7 @@ class IsLoading extends React.Component {
                     height="128"
                 />
             </div>
-        )
+        )            
     }
 }
 

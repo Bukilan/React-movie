@@ -16,14 +16,13 @@ class MyTable extends React.Component{
     }
 
     searchChangeHandler(event){
-        console.log(event.target.value);
         const boundObject = this;
         const searchTerm = event.target.value;
         boundObject.performSearch(searchTerm)
     };
 
     handleMenu(){
-        window.location.reload();
+        this.props.fetchMovie(1);
     }
 
 
@@ -37,7 +36,7 @@ class MyTable extends React.Component{
                 </th>
                 <th width="40"/>
                 <th>
-                    <h3 className="header-home" onClick={this.handleMenu}>
+                    <h3 className="header-home" onClick={this.handleMenu.bind(this)}>
                         HOME
                     </h3>
                 </th>
@@ -52,21 +51,20 @@ class MyTable extends React.Component{
 }
 
 MyTable.propTypes = {
-    // fetchMovie: PropTypes.func.isRequired,
     list: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-    // list: state.list,
-    state: state
-});
+    method: state.method,
+    query: state.query,
+    state: state,
 
+});
 
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchMovie: (page, method, query_value) => dispatch(itemFetchMovies(page, method, query_value))
     };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyTable)
