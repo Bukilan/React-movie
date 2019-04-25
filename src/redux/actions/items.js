@@ -1,10 +1,10 @@
 
 import React from "react";
 
-export function itemFetchMovies(page = 1, method = 'movie/popular', query_value='') {
+export function itemFetchMovies(page = 1, method = 'movie/popular', query_value='', year='') {
     return function (dispatch) {
-        console.log('https://api.themoviedb.org/3/' + method + '?api_key=56d793d6cea47e6ab2101f3386c7b8b6&language=en-US' + query_value + '&page=' + page.toString());
-         return fetch('https://api.themoviedb.org/3/' + method + '?api_key=56d793d6cea47e6ab2101f3386c7b8b6&language=en-US' + query_value + '&page=' + page.toString(), {method: 'GET'})
+        console.log('https://api.themoviedb.org/3/' + method + '?api_key=56d793d6cea47e6ab2101f3386c7b8b6&language=en-US' + query_value + '&page=' + page.toString() + year);
+         return fetch('https://api.themoviedb.org/3/' + method + '?api_key=56d793d6cea47e6ab2101f3386c7b8b6&language=en-US' + query_value + '&page=' + page.toString() + year, {method: 'GET'})
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -35,6 +35,7 @@ export function itemFetchMovies(page = 1, method = 'movie/popular', query_value=
                 }
                 console.log('fetch data here');
                 console.log(movies);
+                let search_year = year.split('=');
                 let curr_method = method;
                 let curr_query = query_value.split('=')[1];
                     dispatch(
@@ -43,6 +44,7 @@ export function itemFetchMovies(page = 1, method = 'movie/popular', query_value=
                             payload: movies,
                             payload_method: curr_method,
                             payload_query: curr_query,
+                            payload_year: search_year[1],
                         }
                     );
             });

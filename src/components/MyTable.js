@@ -23,6 +23,18 @@ let sel = "popular";
         performSearch(searchTerm)
     };
 
+     const yearSearch = (value) => {
+        if (value.length === 4 ){
+            let year = "&primary_release_year=" + value.toString();
+            props.fetchMovie(1, 'discover/movie', '&sort_by=popularity.desc&include_adult=false&include_video=false', year)
+        }
+     };
+
+     const yearChangeHandler = (event) => {
+         const yearTerm = event.target.value;
+         yearSearch(yearTerm)
+     };
+
     const handleMenu = () => {
         props.fetchMovie(1);
     };
@@ -63,7 +75,7 @@ let sel = "popular";
                         HOME
                     </h3>
                 </th>
-                <th width="60"/>
+                <th width="90"/>
                 <th>
                     <select ref={node => {sel = node}}
                             onChange={onSelectChange}
@@ -74,7 +86,12 @@ let sel = "popular";
                         <option value="now_playing">Now Playing</option>
                     </select>
                 </th>
-                <th width="1150"/>
+                <th width="60"/>
+                <th>
+                    <input className="header-input-year" type="text" name="txt" placeholder="Enter search year"
+                           onChange={yearChangeHandler}/>
+                </th>
+                <th width="930"/>
                 <th>
                     <input className="header-input" type="text" name="txt" placeholder="Enter search term"
                            onChange={searchChangeHandler}/>
@@ -86,14 +103,12 @@ let sel = "popular";
 
 
 const mapStateToProps = (state) => ({
-    method: state.method,
-    query: state.query,
     state: state,
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchMovie: (page, method, query_value) => dispatch(itemFetchMovies(page, method, query_value))
+        fetchMovie: (page, method, query_value, year) => dispatch(itemFetchMovies(page, method, query_value, year))
     };
 };
 

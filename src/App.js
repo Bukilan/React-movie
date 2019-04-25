@@ -12,7 +12,8 @@ let  trend_page_counter = 1;
 let  search_page_counter = 1;
 let  top_rated_page_counter = 1;
 let  upcoming_page_counter = 1;
-let now_playing_page_counter = 1;
+let  now_playing_page_counter = 1;
+let  year_page_counter = 1;
 let  prev_query = "";
 
 class App extends React.Component {
@@ -56,6 +57,12 @@ class App extends React.Component {
                 this.props.fetchMovie(now_playing_page_counter, "movie/now_playing");
                 break
             }
+            case "discover/movie": {
+                year_page_counter++;
+                let year = "&primary_release_year=" + this.props.state.items.year.toString();
+                this.props.fetchMovie(year_page_counter, "discover/movie", '&sort_by=popularity.desc&include_adult=false&include_video=false', year);
+                break
+            }
         }
     };
 
@@ -95,6 +102,14 @@ class App extends React.Component {
                     now_playing_page_counter--
                 }
                 this.props.fetchMovie(now_playing_page_counter, "movie/now_playing");
+                break
+            }
+            case "discover/movie": {
+                if (year_page_counter >= 2) {
+                    year_page_counter--
+                }
+                let year = "&primary_release_year=" + this.props.state.items.year.toString();
+                this.props.fetchMovie(year_page_counter, "discover/movie", '&sort_by=popularity.desc&include_adult=false&include_video=false', year);
                 break
             }
         }
@@ -165,13 +180,14 @@ const mapStateToProps = (state) => ({
         // list: state.list,
         method: state.method,
         query: state.query,
+        year: state.year,
         state: state,
 });
 
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchMovie: (page, method, query_value) => dispatch(itemFetchMovies(page, method, query_value))
+        fetchMovie: (page, method, query_value, year) => dispatch(itemFetchMovies(page, method, query_value, year))
     };
 };
 
