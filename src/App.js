@@ -1,3 +1,6 @@
+//TODO: implement first and last page in pagination
+//TODO: implement current page in pagination
+
 import React from "react";
 import { PropTypes }  from 'prop-types';
 import { connect } from "react-redux";
@@ -14,6 +17,7 @@ let  top_rated_page_counter = 1;
 let  upcoming_page_counter = 1;
 let  now_playing_page_counter = 1;
 let  year_page_counter = 1;
+let  genre_page_counter = 1;
 let  prev_query = "";
 
 class App extends React.Component {
@@ -58,10 +62,18 @@ class App extends React.Component {
                 break
             }
             case "discover/movie": {
-                year_page_counter++;
-                let year = "&primary_release_year=" + this.props.state.items.year.toString();
-                this.props.fetchMovie(year_page_counter, "discover/movie", '&sort_by=popularity.desc&include_adult=false&include_video=false', year);
-                break
+                if (this.props.state.items.year.length === 4){
+                    year_page_counter++;
+                    let year = "&primary_release_year=" + this.props.state.items.year.toString();
+                    this.props.fetchMovie(year_page_counter, "discover/movie", '&sort_by=popularity.desc&include_adult=false&include_video=false', year);
+                    break
+                } else {
+                    genre_page_counter++;
+                    let genre = "&with_genres=" + this.props.state.items.year;
+                    console.log(genre);
+                    this.props.fetchMovie(genre_page_counter, "discover/movie", '&sort_by=popularity.desc&include_adult=false&include_video=false', genre);
+                }
+
             }
         }
     };
@@ -76,7 +88,9 @@ class App extends React.Component {
                 break
             }
             case "search/movie": {
-                if(search_page_counter >= 2) {search_page_counter--}
+                if (search_page_counter >= 2) {
+                    search_page_counter--
+                }
                 this.props.fetchMovie(search_page_counter);
                 let query = '&query=' + this.props.state.items.query.toString();
                 this.props.fetchMovie(search_page_counter, 'search/movie', query);
@@ -105,12 +119,21 @@ class App extends React.Component {
                 break
             }
             case "discover/movie": {
-                if (year_page_counter >= 2) {
-                    year_page_counter--
+                if (this.props.state.items.year.length === 4) {
+                    if (year_page_counter >= 2) {
+                        year_page_counter--
+                    }
+                    let year = "&primary_release_year=" + this.props.state.items.year.toString();
+                    this.props.fetchMovie(year_page_counter, "discover/movie", '&sort_by=popularity.desc&include_adult=false&include_video=false', year);
+                    break
+                } else {
+                    if (genre_page_counter >= 2) {
+                        genre_page_counter--
+                    }
+                    let genre = "&with_genres=" + this.props.state.items.year.toString();
+                    this.props.fetchMovie(genre_page_counter, "discover/movie", '&sort_by=popularity.desc&include_adult=false&include_video=false', genre);
+                    break
                 }
-                let year = "&primary_release_year=" + this.props.state.items.year.toString();
-                this.props.fetchMovie(year_page_counter, "discover/movie", '&sort_by=popularity.desc&include_adult=false&include_video=false', year);
-                break
             }
         }
     };
@@ -177,7 +200,6 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-        // list: state.list,
         method: state.method,
         query: state.query,
         year: state.year,

@@ -35,7 +35,15 @@ export function itemFetchMovies(page = 1, method = 'movie/popular', query_value=
                 }
                 console.log('fetch data here');
                 console.log(movies);
-                let search_year = year.split('=');
+                let search_year = '';
+                if ( year.split('=')[0] === "&primary_release_year"){
+                    search_year = year.split('=')[1];
+                    console.log(search_year[1])
+                }
+                if ( year.split('=')[0] === "&with_genres"){
+                    search_year = year.split('=')[1];
+                    console.log(search_year)
+                }
                 let curr_method = method;
                 let curr_query = query_value.split('=')[1];
                     dispatch(
@@ -44,7 +52,7 @@ export function itemFetchMovies(page = 1, method = 'movie/popular', query_value=
                             payload: movies,
                             payload_method: curr_method,
                             payload_query: curr_query,
-                            payload_year: search_year[1],
+                            payload_year: search_year,
                         }
                     );
             });
