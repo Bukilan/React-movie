@@ -1,4 +1,5 @@
-//TODO: HOME and cancel buttons doest make form back to "popular" value
+//TODO: cancel buttons doest make form back to "popular" value
+//TODO: make button blue on hover and probably remake style
 
 import React from 'react';
 import "../static/MyTable.css"
