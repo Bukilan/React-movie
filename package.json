@@ -41,6 +41,6 @@
   ],
   "homepage": "https://bukilan.github.io/TestBuildMovieList/",
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^5.0.0"
   }
 }
